@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
   app.enableCors({
-    origin: 'https://final-book-review-hubfe.vercel.app/', // ganti dengan domain frontend kamu
+    origin: 'https://final-book-review-hubfe.vercel.app', // ganti dengan domain frontend kamu
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
