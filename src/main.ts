@@ -6,8 +6,19 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-  app.enableCors();
-
+  app.enableCors({
+    origin: 'https://final-book-review-hub-fe-98vb.vercel.app/', // ganti dengan domain frontend kamu
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  });
+  
+  
+   // Tambahkan middleware untuk set header Allow-Private-Network
+   app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Private-Network', 'true');
+    next();
+  });
   const config = new DocumentBuilder()
     .setTitle('Simple Social Media API')
     .addBearerAuth()
